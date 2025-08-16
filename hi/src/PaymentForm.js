@@ -61,7 +61,7 @@ const PaymentForm = ({ onPaymentSuccess, onCancel }) => {
         handler: async (response) => {
           try {
             // Verify payment
-            const verifyResponse = await fetch('http://localhost:5000/api/verify-payment', {
+            const verifyResponse = await fetch('https://hehe2-g9yy.onrender.com/api/verify-payment', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
