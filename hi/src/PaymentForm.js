@@ -33,7 +33,7 @@ const PaymentForm = ({ onPaymentSuccess, onCancel }) => {
       }
 
       // Create order
-      const orderResponse = await fetch('http://localhost:5000/api/create-order', {
+      const orderResponse = await fetch('https://hehe2-g9yy.onrender.com/api/create-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

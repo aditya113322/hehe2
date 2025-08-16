@@ -20,7 +20,7 @@ const JoinRoom = ({ onJoinSuccess, onCancel }) => {
 
     try {
       // Validate ticket
-      const response = await fetch(`http://localhost:5000/api/ticket/${ticketId.trim()}`);
+      const response = await fetch(`https://hehe2-g9yy.onrender.com/api/ticket/${ticketId.trim()}`);
       const data = await response.json();
       
       if (!response.ok) {

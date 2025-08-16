@@ -11,7 +11,7 @@ cd server
 npm install
 npm start
 ```
-The server will start on **http://localhost:5000**
+The server will start on **https://hehe2-g9yy.onrender.com**
 
 ### 2. Start the Frontend (React App)
 ```bash
@@ -52,7 +52,7 @@ Before using the payment features, update these files with your Razorpay credent
    - Interactive security demonstrations
    - Clear call-to-action buttons
 
-2. **Backend API**: http://localhost:5000
+2. **Backend API**: https://hehe2-g9yy.onrender.com
    - Payment endpoints
    - Ticket validation
    - Socket.IO server for real-time chat

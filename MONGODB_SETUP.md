@@ -206,7 +206,7 @@ db.chatrooms.drop()
 
 ### Health Check Endpoint
 ```bash
-curl http://localhost:5000/api/health
+curl https://hehe2-g9yy.onrender.com/api/health
 ```
 
 Response:
