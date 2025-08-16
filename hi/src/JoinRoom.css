@@ -1,0 +1,159 @@
+.join-room {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+  padding: 20px;
+}
+
+.join-card {
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.join-card h2 {
+  color: #2E8B57;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.join-description {
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #2E8B57;
+}
+
+.form-group input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #fcc;
+}
+
+.join-actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.join-button {
+  flex: 1;
+  background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.join-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+}
+
+.join-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.cancel-button {
+  flex: 1;
+  background: transparent;
+  color: #666;
+  border: 2px solid #ddd;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-button:hover:not(:disabled) {
+  border-color: #999;
+  color: #333;
+}
+
+.cancel-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.join-info {
+  text-align: left;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #2E8B57;
+}
+
+.join-info h3 {
+  color: #2E8B57;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.join-info p {
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .join-card {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .join-actions {
+    flex-direction: column;
+  }
+  
+  .join-button, .cancel-button {
+    width: 100%;
+  }
+}
