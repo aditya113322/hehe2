@@ -14,7 +14,12 @@ const Payment = require("./models/Payment");
 const ChatRoom = require("./models/ChatRoom");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(express.json());
 
 // Initialize MongoDB connection
@@ -246,7 +251,10 @@ const io = new Server(httpServer, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
+    credentials: true
   },
+  transports: ['websocket', 'polling'],
+  allowEIO3: true
 });
 
 // Room-wise user list
@@ -254,6 +262,8 @@ const rooms = {};
 
 io.on("connection", (socket) => {
   console.log("🔌 Client connected:", socket.id);
+  console.log("🌐 Client origin:", socket.handshake.headers.origin);
+  console.log("🔗 Transport:", socket.conn.transport.name);
 
   let currentRoom = null;
   let currentUser = null;
@@ -618,6 +628,20 @@ const setupRoomCleanup = () => {
 // Setup cleanup after a delay to ensure MongoDB connection is established
 setTimeout(setupRoomCleanup, 5000);
 
-httpServer.listen(5000, () => {
-  console.log("🚀 Server running");
+const PORT = process.env.PORT || 5000;
+const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+
+// Add error handling for production
+io.engine.on("connection_error", (err) => {
+  console.log("❌ Socket.IO connection error:", err.req);
+  console.log("❌ Error code:", err.code);
+  console.log("❌ Error message:", err.message);
+  console.log("❌ Error context:", err.context);
+});
+
+httpServer.listen(PORT, HOST, () => {
+  console.log(`🚀 Server running on ${HOST}:${PORT}`);
+  console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔗 CORS enabled for all origins`);
+  console.log(`📍 Health check: http://${HOST}:${PORT}/api/health`);
 });

@@ -313,15 +313,19 @@ export default function App() {
           });
           console.log('📥 Requested encryption salt from room creator');
 
-          // Set timeout in case salt is not received
+          // Set timeout in case salt is not received (longer for production)
+          const timeoutDuration = window.location.hostname === 'localhost' ? 10000 : 20000;
           const timeoutId = setTimeout(() => {
             // Check current encryption status
-            console.warn('⚠️ Encryption salt not received within 10 seconds');
+            console.warn(`⚠️ Encryption salt not received within ${timeoutDuration/1000} seconds`);
             console.log('Current encryption ready state:', isEncryptionReady);
-            if (!isEncryptionReady) {
+            console.log('Current encryption ready ref:', encryptionReadyRef.current);
+            console.log('Socket connected:', socket.connected);
+            console.log('Socket ID:', socket.id);
+            if (!encryptionReadyRef.current) {
               alert('Unable to establish secure connection. Please try rejoining the room.');
             }
-          }, 10000);
+          }, timeoutDuration);
 
           // Store timeout ID to clear it if encryption becomes ready
           window.encryptionTimeout = timeoutId;
