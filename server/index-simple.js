@@ -10,12 +10,20 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["*","http://localhost:3000", "http://localhost:3001"],
-    methods: ["GET", "POST"]
-  }
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true
+  },
+  transports: ['websocket', 'polling'],
+  allowEIO3: true
 });
 
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(express.json());
 
 // In-memory storage (for development without MongoDB)
@@ -303,8 +311,19 @@ setInterval(() => {
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📍 Health check: http://localhost:${PORT}/api/health`);
+const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+
+// Add error handling for production
+io.engine.on("connection_error", (err) => {
+  console.log("❌ Socket.IO connection error:", err.req);
+  console.log("❌ Error code:", err.code);
+  console.log("❌ Error message:", err.message);
+});
+
+server.listen(PORT, HOST, () => {
+  console.log(`🚀 Server running on ${HOST}:${PORT}`);
+  console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`📍 Health check: http://${HOST}:${PORT}/api/health`);
   console.log(`⚠️ Using in-memory storage - data will be lost on restart`);
+  console.log(`🔗 CORS enabled for all origins`);
 });

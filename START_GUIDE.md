@@ -11,7 +11,7 @@ cd server
 npm install
 npm start
 ```
-The server will start on **https://hehe2-g9yy.onrender.com**
+The server will start on **http://31.97.235.37:5000**
 
 ### 2. Start the Frontend (React App)
 ```bash
