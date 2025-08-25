@@ -645,3 +645,6 @@ httpServer.listen(PORT, HOST, () => {
   console.log(`🔗 CORS enabled for all origins`);
   console.log(`📍 Health check: http://${HOST}:${PORT}/api/health`);
 });
+app.get('/', (req, res) => {
+  res.send('✅ Backend is up and running!');
+});

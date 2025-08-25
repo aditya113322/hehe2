@@ -379,7 +379,7 @@ setInterval(() => {
 }, 5 * 60 * 1000);
 
 const PORT = process.env.PORT || 5000;
-const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+const HOST = process.env.NODE_ENV === '0.0.0.0';
 
 // Add error handling for production
 io.engine.on("connection_error", (err) => {
