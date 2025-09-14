@@ -108,7 +108,10 @@ export default function App() {
             <div className="room">
               Room: <strong>{room}</strong>
             </div>
-
+            <div className="rooms">
+              <button onClick={() => switchRoom("general")}>#general</button>
+              <button onClick={() => switchRoom("chhatarpur")}>#chhatarpur</button>
+            </div>
             <div className="users">
               👥 {users.length} | {users.map((u) => u.username).join(", ")}
             </div>
