@@ -1,7 +1,9 @@
 * { box-sizing: border-box; }
 body { margin: 0; font-family: system-ui, -apple-system, Arial, sans-serif; background:#fff8f0; }
 
-.chat-wrap { max-width: 900px; margin: 0 auto; padding: 16px; display: grid; gap: 12px; }
+.app { min-height: 100vh; }
+
+.chat-wrap { max-width: 900px; margin: 0 auto; padding: 16px; display: grid; gap: 12px; background: #fff8f0; min-height: 100vh; }
 header { display: flex; align-items: center; gap: 8px; }
 header h1 { font-size: 1.25rem; margin: 0; }
 .status { width:10px; height:10px; border-radius:50%; background:#d33; }
@@ -11,7 +13,14 @@ header h1 { font-size: 1.25rem; margin: 0; }
 .join input { padding:10px 12px; border-radius:10px; border:1px solid #ddd; flex:1; }
 .join button { padding:10px 16px; border:0; border-radius:10px; background:#075e54; color:#fff; cursor:pointer; }
 
-.topbar { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; background:#ffe4c4; border-radius:12px; }
+.topbar { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; background:#ffe4c4; border-radius:12px; flex-wrap: wrap; }
+
+.room-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
 .rooms button { margin-right:6px; padding:6px 10px; border-radius:10px; border:0; background:#d35400; color:#fff; cursor:pointer; }
 .users { font-size:0.9rem; }
 
@@ -34,3 +43,278 @@ header h1 { font-size: 1.25rem; margin: 0; }
 @keyframes bob { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-3px);} }
 
 @keyframes fadeIn { from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform: translateY(0);} }
+
+/* Home View Styles */
+.home-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.home-card {
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.home-card h2 {
+  color: #8B4513;
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+
+.home-card p {
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.home-actions {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.create-room-button {
+  background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-room-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+.join-room-button {
+  background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.join-room-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+}
+
+/* Room Controls */
+.room-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.leave-button {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.leave-button:hover {
+  background: #5a6268;
+}
+
+.delete-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-button:hover {
+  background: #c82333;
+}
+
+.creator-badge {
+  background: #ffc107;
+  color: #212529;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+/* Encryption and Security Styles */
+.message-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.encryption-status {
+  display: flex;
+  align-items: center;
+}
+
+.encrypted-badge {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.not-encrypted-badge {
+  background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ephemeral-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.ephemeral-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #495057;
+  cursor: pointer;
+}
+
+.ephemeral-toggle input[type="checkbox"] {
+  margin: 0;
+}
+
+/* Enhanced Message Styles */
+.msg.encrypted {
+  border-left: 4px solid #28a745;
+  background: linear-gradient(135deg, #f8fff9 0%, #e8f5e8 100%);
+}
+
+.msg.ephemeral {
+  border-left: 4px solid #ff6b35;
+  background: linear-gradient(135deg, #fff8f5 0%, #ffe8e1 100%);
+  animation: fadeInOut 10s ease-in-out forwards;
+}
+
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.encryption-icon, .ephemeral-icon {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.message-text {
+  display: block;
+  line-height: 1.4;
+}
+
+.ephemeral-timer {
+  margin-top: 5px;
+  opacity: 0.6;
+}
+
+.ephemeral-timer small {
+  font-style: italic;
+  color: #ff6b35;
+}
+
+/* Composer Enhancements */
+.composer input:disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.composer button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeInOut {
+  0% { opacity: 1; transform: scale(1); }
+  80% { opacity: 1; transform: scale(1); }
+  90% { opacity: 0.5; transform: scale(0.98); }
+  100% { opacity: 0; transform: scale(0.95); }
+}
+
+/* Enhanced Status Indicators */
+.encryption-status {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.encryption-ready {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.encryption-waiting {
+  color: #ff9800;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+.pending-messages {
+  color: #2196F3;
+  font-weight: bold;
+  background: rgba(33, 150, 243, 0.1);
+  padding: 2px 6px;
+  border-radius: 8px;
+  animation: bounce 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-3px); }
+  60% { transform: translateY(-1px); }
+}
